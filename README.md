@@ -14,7 +14,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <h2>Environments and Technologies Used</h2>
 
 - Microsoft Azure Windows and Linux Virtual Machines
-- Remote Desktop Connection
+- Remote Desktop Connection(RDP)
 - Powershell and Various Command-Line Tools
 - Network Protocols (SSH, RDH, DNS, HTTP/S, ICMP)
 - Wireshark (packet analyzer or network sniffer)
@@ -41,7 +41,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 <p>
-Make sure that both of the Virtual machines are running. Start with logging into the Windows Virtual Machine using Remote Desktop Connection. Copy and paste the public IP address of the Windows Virtual Machine and supply the credentials to log in.   
+Make sure that both the DC-1 and Client-1 VMs are running. Start with logging into both Windows Virtual Machine using RDP(use public IP to find VMs, then sign in as normal).  
 </p>
 <br />
 
@@ -51,7 +51,7 @@ Make sure that both of the Virtual machines are running. Start with logging into
 
 </p>
 <p>
-Observing ICMP Traffic. We start by typing icmp all lower case in the green search bar and pressing "Enter". This tells Wireshark to filter out all inbound and outbound traffic except for ICMP Traffic. We will now be able to see the ICMP packets captured.    
+Observing ICMP Traffic: In Wireshark, type "icmp" in the green search bar at the top and press Enter. This filters all but IMCP traffic.
 </p>
 <br />
 
@@ -61,7 +61,7 @@ Observing ICMP Traffic. We start by typing icmp all lower case in the green sear
 
 </p>
 <p>
-After opening Powershell, we will run the Ping Command, followed by the Private IP Address of the Linux Virtual Machine , "ping 10.0.0.5".  This will allow Wireshark to capture and display the ICMP traffic that we're looking for. 
+Now, open Powershell. After opening Powershell, we will run the ping command, followed by the Private IP Address of the Linux VM: "ping 10.0.0.5".  This will allow Wireshark to capture and display new ICMP traffic. 
 </p>
 <br />
 
@@ -71,7 +71,7 @@ After opening Powershell, we will run the Ping Command, followed by the Private 
 
 </p>
 <p>
-Back in Wireshark, we see the packets, which are requests from the Linux Virtual Machine, as well as the replies from the Windows Virtual Machine. This shows that the Windows and Linux Virtual Machines both have a successful connection.   
+Back in Wireshark, we see packets which are requests from the Linux VM and the replies from the Windows VM, demonstrating the successful connection between both VMs.  
 </p>
 <br />
 
@@ -81,7 +81,7 @@ Back in Wireshark, we see the packets, which are requests from the Linux Virtual
 
 </p>
 <p>
-Configuring a Firewall (Network Security Group). To start, we initiate a perpetual/non-stop ping from the Windows 10 Virtual Machine to the Linux Virtual Machine by running the command... "ping 10.0.0.5 -t". We will notice that Wireshark starts to non-stop ping ICMP Traffic.  
+Configuring a Firewall (Network Security Group): To start, we start a non-stop ping from the Windows 10 VM to the Linux VM by running the command: "ping 10.0.0.5 -t". This will continue until the firewall is configured.
 </p>
 <br />
 
@@ -92,7 +92,7 @@ Configuring a Firewall (Network Security Group). To start, we initiate a perpetu
 
 </p>
 <p>
-Back in Microsoft Azure, open the Network Security Group for the Linux Virtual Machine and disable incoming or inbound ICMPv4 traffic, this is the traffic that appears in Wireshark after running the "Ping" command . Click on Network Settings, open the Network Security Group settings for the Linux Virtual Machine, click inbound rules, and click add new inbound rule. Source/Destination Ports have the (*) symbol, which means any port, this is because ICMP Protocol does not use any specific ports. Finally we click "add". We can see that our new inbound rule was successfully created.   
+Back in Microsoft Azure, open the Network Security Group for the Linux VM and disable incoming or inbound ICMPv4 traffic. Then, click on Network Settings, open the Network Security Group settings for the Linux VM, click inbound rules, and click add new inbound rule. Source/Destination Ports have the "*" symbol(which means any port) because ICMP Protocol does not use a specific port. Finally we click "add", and we can see that our new rule was successfully added to the inbound rules.   
 </p>
 <br />
 
@@ -102,7 +102,7 @@ Back in Microsoft Azure, open the Network Security Group for the Linux Virtual M
 
 </p>
 <p>
-After enabling our new Inbound Security Rule, we now only see "Request timed out". This shows that our new Inbound Security Rule is working and we now have successfully configured a Network Security Group (NSG). We can delete the rule if we want to revert the changes.  
+After enabling our new inbound security rule, we should see a bunch of "Request timed out" notes in Powershell. This shows that our new inbound security rule is working, and with that we have successfully configured a Network Security Group (NSG)! To revert these changes, simply delete the new rule in Azure.
 </p>
 <br />
 
@@ -112,7 +112,7 @@ After enabling our new Inbound Security Rule, we now only see "Request timed out
 
 </p>
 <p>
-Observe SSH Traffic. Secure Shell (SSH) is used to make a secure connection from one computer to another, this ebables all communication to be encrypted or hidden. In the Windows virtual machine, open Wireshark and start a packet capture. Filter for SSH traffic only. Next, open PowerShell and run the command  "ssh labuser@10.0.0.5", this tells the Windows virtual machine that we want to Secure Shell (SSH) connect to the Linux Virtual Machine from the Windows Virtual Machine. We specified the username and private IP Address of the Linux Virtual Machine after the SSH command in order to connect our Windows Virtual Machine to the Linux Virtual Machine via Secure Shell (SSH) connection. Say "yes" to fingerprint and provide the Linux virtual machine credentials to successfully connect via Secure Shell (SSH). Secure Shell uses TCP Port: 22.
+Observe SSH Traffic: Secure Shell (SSH) is used to make a secure connection between two computers, enabling all communication to be encrypted or hidden. In the Windows VM, navigate back to Wireshark and start a packet capture with SSH traffic only(type "SSH" into the search bar). Next, go back to PowerShell and run the command  "ssh labuser@10.0.0.5". This tells the Windows VM that we want to Secure Shell connect to the Linux VM from the Windows VM. Next, say "yes" and provide the Linux VM credentials to successfully connect via SSH. SSH uses TCP Port 22.
  </p>
 <br />
 
@@ -122,7 +122,7 @@ Observe SSH Traffic. Secure Shell (SSH) is used to make a secure connection from
 
 </p>
 <p> 
- We can see that the connection to the Linux VM was successful.
+ You should now see the Linux VM's command line in Powershell. This means the SSH connection was successful!
 </p>
 <br />
 
@@ -132,7 +132,7 @@ Observe SSH Traffic. Secure Shell (SSH) is used to make a secure connection from
 
 </p>
 <p>
-Observe DHCP Traffic. This protocol is used to assign an IP address to devices when they are first connected to the network. Dynamic Host Control Protocol (DHCP) uses UDP Ports: 67 and 68. Back in Wireshark, we filter for DHCP traffic only from the Windows 10 virtual machine, attempt to issue a new IP address from the command line. Open PowerShell as an adminintrator and run the command "ipconfig /renew". We will now see the DHCP traffic being captured in Wireshark.
+Observe DHCP Traffic: This protocol assigns an IP address to devices that are connecting to a network for the first time. DHCP uses UDP Ports 67 and 68. Back in Wireshark, filter for DHCP traffic. We will now attempt to issue a new IP address from Powershell. To do this, open PowerShell as an adminintrator and run the command "ipconfig /renew". This starts new DHCP traffic which will be captured in Wireshark.
 
 </p>
 <br />
@@ -144,7 +144,7 @@ Observe DHCP Traffic. This protocol is used to assign an IP address to devices w
 
 </p>
 <p>
-Observe DNS Traffic. DNS, or Domain Name System, uses TCP/UDP Port: 53. From Powershell in the Windows VM, run the command "nslookup" followed by the URL of "google.com" and "disney.com" to see what the IP addresses are. In Wireshark, filter for DNS traffic only. Observe the DNS traffic being shown in WireShark
+Observe DNS Traffic: DNS translates between human-readable domain names and IP addresses, and uses TCP/UDP Port 53. From Powershell, run the command "nslookup" followed by the URL of "google.com" and "disney.com" to see what the IP addresses are. In Wireshark, filter for DNS traffic only and observe.
 
 </p>
 <br />
@@ -155,6 +155,6 @@ Observe DNS Traffic. DNS, or Domain Name System, uses TCP/UDP Port: 53. From Pow
 
 </p>
 <p>
-Observe RDP Traffic (Remote Desktop Protocol). In Wireshark, we type "rdp" in the search bar, followed by pressing "enter", in order to filter for RDP traffic only. RDP or Remote Desktop Protocol, is used for remotely connecting from one computer to another, gaining a Remote Desktop Graphical User Interface (GUI). RDP uses TCP Port: 3389
+Observe RDP Traffic:(I think you know what RDP does) and it uses TCP Port 3389.  In Wireshark, type "rdp" to filter for RDP traffic only. Since this lab is being performed within Azure VMs, there will be a lot of RDP traffic. With that, this lab is complete!
 </p>
 <br />
