@@ -155,6 +155,6 @@ Observe DNS Traffic: DNS translates between human-readable domain names and IP a
 
 </p>
 <p>
-Observe RDP Traffic:(I think you know what RDP does) and it uses TCP Port 3389.  In Wireshark, type "rdp" to filter for RDP traffic only. Since this lab is being performed within Azure VMs, there will be a lot of RDP traffic. With that, this lab is complete!
+Observe RDP Traffic:(I think you know what RDP does) and it uses TCP Port 3389.  In Wireshark, type "tcp.port == 3389"("rdp" doesn't work) to filter for RDP traffic only. Since this lab is being performed within Azure VMs, there will be a lot of RDP traffic. With that, this lab is complete!
 </p>
 <br />
