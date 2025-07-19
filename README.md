@@ -37,7 +37,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <p>
 
- <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D1.png?raw=true)
 
 </p>
 <p>
@@ -47,7 +47,7 @@ Make sure that both the DC-1 and Client-1 VMs are running. Start with logging in
 
 <p>
 
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D3.png?raw=true)
 
 </p>
 <p>
@@ -57,7 +57,7 @@ Observing ICMP Traffic: In Wireshark, type "icmp" in the green search bar at the
 
 <p>
 
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D4.png?raw=true)
 
 </p>
 <p>
@@ -67,7 +67,7 @@ Now, open Powershell. After opening Powershell, we will run the ping command, fo
 
 <p>
  
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D5.png?raw=true)
 
 </p>
 <p>
@@ -77,7 +77,7 @@ Back in Wireshark, we see packets which are requests from the Linux VM and the r
 
 <p>
 
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D1.png?raw=true)
 
 </p>
 <p>
@@ -87,7 +87,7 @@ Configuring a Firewall (Network Security Group): To start, we start a non-stop p
 
 <p>
 
- <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D1.png?raw=true)
 
 
 </p>
@@ -98,7 +98,7 @@ Back in Microsoft Azure, open the Network Security Group for the Linux VM and di
 
 <p>
 
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D1.png?raw=true)
 
 </p>
 <p>
@@ -108,8 +108,7 @@ After enabling our new inbound security rule, we should see a bunch of "Request 
 
 <p>
 
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D1.png?raw=true)
 </p>
 <p>
 Observe SSH Traffic: Secure Shell (SSH) is used to make a secure connection between two computers, enabling all communication to be encrypted or hidden. In the Windows VM, navigate back to Wireshark and start a packet capture with SSH traffic only(type "SSH" into the search bar). Next, go back to PowerShell and run the command  "ssh labuser@10.0.0.5". This tells the Windows VM that we want to Secure Shell connect to the Linux VM from the Windows VM. Next, say "yes" and provide the Linux VM credentials to successfully connect via SSH. SSH uses TCP Port 22.
@@ -118,7 +117,7 @@ Observe SSH Traffic: Secure Shell (SSH) is used to make a secure connection betw
 
 <p>
  
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D1.png?raw=true)
 
 </p>
 <p> 
@@ -128,7 +127,7 @@ Observe SSH Traffic: Secure Shell (SSH) is used to make a secure connection betw
 
 <p>
  
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D1.png?raw=true)
 
 </p>
 <p>
@@ -140,7 +139,7 @@ Observe DHCP Traffic: This protocol assigns an IP address to devices that are co
 
 <p>
 
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D1.png?raw=true)
 
 </p>
 <p>
@@ -151,7 +150,7 @@ Observe DNS Traffic: DNS translates between human-readable domain names and IP a
 
 <p>
 
- <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image alt](https://github.com/LaithAli28/azure-network-protocols/blob/main/D1.png?raw=true)
 
 </p>
 <p>
